@@ -50,3 +50,31 @@ export const getCategories = async () => {
     console.log(`Error in getCategories: ${err}`);
   }
 };
+
+export const getUser = async (id) => {
+  try {
+    const response = await AxiosInstance({
+      method: "GET",
+      url: `/users/${id}`,
+    });
+    return response;
+  } catch (err) {
+    console.log(`Error in getUser: ${err}`);
+  }
+};
+
+export const login = async ({ username, password }) => {
+  try {
+    const response = await AxiosInstance({
+      method: "POST",
+      url: `/auth/login`,
+      data: {
+        username,
+        password,
+      },
+    });
+    return response;
+  } catch (err) {
+    console.log(`Error in login: ${err}`);
+  }
+};

@@ -62,7 +62,7 @@ export default async function Catalogo({ params, searchParams }) {
     : products;
 
   return (
-    <main className="flex flex-col items-center justify-between px-4 max-w-6xl mx-auto">
+    <main className="flex flex-col items-center justify-between px-4 max-w-6xl mx-auto min-h-[73vh]">
       <section className="flex items-start gap-4 my-8 flex-col sm:flex-row w-full">
         <CatalogoSidebar categories={categories} />
         <CatalogoList products={orderedProducts} />
