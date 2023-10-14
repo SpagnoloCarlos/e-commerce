@@ -10,6 +10,7 @@ const ProductCard = ({
   price,
   rating,
   category,
+  priority,
 }: IProductCard) => {
   const firstLetter = category?.charAt(0)?.toUpperCase();
   const rest = category?.slice(1);
@@ -23,6 +24,7 @@ const ProductCard = ({
           alt={title}
           width={183}
           height={183}
+          priority={priority}
         />
       </div>
       <div className="flex flex-col p-4 pt-0">

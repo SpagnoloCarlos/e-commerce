@@ -5,4 +5,5 @@ export interface IProductCard {
   image: string;
   category: string;
   rating: object;
+  priority: boolean;
 }

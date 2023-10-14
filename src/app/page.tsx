@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Slider />
       <main className="flex flex-col items-center justify-between px-4 max-w-6xl mx-auto">
-        <ProductsBand title="Productos destacados" />
+        <ProductsBand title="Productos destacados" category="destacados" />
         <ProductsBand title="Lo más buscado" category="buscados" />
         <ProductsBand title="Productos electrónicos" category="electronics" />
         <ProductsBand title="Productos de joyería" category="jewelery" />
