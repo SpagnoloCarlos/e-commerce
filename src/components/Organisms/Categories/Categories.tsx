@@ -18,7 +18,7 @@ const Categories = async ({ title }) => {
     <section className="flex flex-col gap-4 w-full py-8">
       <h2 className="text-black opacity-90 text-2xl">{title}</h2>
       {categories?.length > 0 && (
-        <ul className="grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <ul className="grid justify-items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {categories.map((title) => (
             <CategoryCard key={`category_${title}`} title={title} />
           ))}

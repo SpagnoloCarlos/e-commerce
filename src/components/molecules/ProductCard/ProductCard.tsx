@@ -11,6 +11,9 @@ const ProductCard = ({
   rating,
   category,
 }: IProductCard) => {
+  const firstLetter = category?.charAt(0)?.toUpperCase();
+  const rest = category?.slice(1);
+  const categoryTitle = firstLetter + rest;
   return (
     <li className="flex flex-col w-[215px] bg-white rounded-sm transition-all duration-200 hover:drop-shadow-md">
       <div className="w-full flex items-center justify-center p-4 rounded-sm aspect-square max-h-[215px]">
@@ -27,10 +30,10 @@ const ProductCard = ({
           href={`/catalogo/${category}`}
           className="px-1 rounded-sm bg-[--quaternary] text-[12px] text-black w-max"
         >
-          {category}
+          {categoryTitle}
         </Link>
         <Link
-          className="text-black opacity-90 mt-3 text-sm product-title"
+          className="text-black opacity-90 mt-3 text-sm product-title hover:underline"
           href={`/producto/${id}/${friendlyUrl(title)}`}
         >
           {title}

@@ -12,6 +12,18 @@ export const getProducts = async (limit?: number) => {
   }
 };
 
+export const getProductById = async (id?: number) => {
+  try {
+    const response = await AxiosInstance({
+      method: "GET",
+      url: `/products/${id}`,
+    });
+    return response;
+  } catch (err) {
+    console.log(`Error in getProductById: ${err}`);
+  }
+};
+
 export const getProductsByCategory = async (
   category: string,
   limit?: number
