@@ -6,6 +6,11 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary: #01161e;
+  --secondary: #124559;
+  --tertiary: #598392;
+  --quaternary: #aec3b0;
+  --quinary: #f6ae2d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +23,12 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #ebebeb;
+}
+
+.product-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
