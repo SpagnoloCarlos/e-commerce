@@ -63,6 +63,18 @@ export const getUser = async (id) => {
   }
 };
 
+export const getCartByUser = async (id) => {
+  try {
+    const response = await AxiosInstance({
+      method: "GET",
+      url: `/carts/${id}`,
+    });
+    return response;
+  } catch (err) {
+    console.log(`Error in getCartByUser: ${err}`);
+  }
+};
+
 export const login = async ({ username, password }) => {
   try {
     const response = await AxiosInstance({

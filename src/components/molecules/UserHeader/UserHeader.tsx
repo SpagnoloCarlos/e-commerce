@@ -4,27 +4,38 @@ import Image from "next/image";
 import { useState } from "react";
 import icon from "../../../../public/icons/header_user.svg";
 import Link from "next/link";
-import { setCookieToken } from "@/utils/cookiesHelper";
 import { useRouter } from "next/navigation";
+import { setCookie } from "@/utils/cookiesHelper";
 
 const UserHeader = ({ logged }) => {
   const [collapsed, setCollapsed] = useState(false);
   const router = useRouter();
 
   const logout = () => {
-    setCookieToken("");
     router.refresh();
+    setCookie({ name: "user_data", data: "", remove: true });
+  };
+
+  const handleOnEnter = () => {
+    setCollapsed(true);
+  };
+
+  const handleOnLeave = () => {
+    setCollapsed(false);
   };
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={handleOnEnter}
+      onMouseLeave={handleOnLeave}
+    >
       <Image
         className="cursor-pointer mt-2"
         src={icon}
         alt="Usuario"
         width={33}
         height={33}
-        onClick={() => setCollapsed(!collapsed)}
       />
       {collapsed && (
         <div
@@ -33,21 +44,11 @@ const UserHeader = ({ logged }) => {
           } `}
         >
           {logged ? (
-            <p
-              className="text-black w-max cursor-pointer"
-              onClick={() => {
-                logout();
-                setCollapsed(false);
-              }}
-            >
+            <p className="text-black w-max cursor-pointer" onClick={logout}>
               Cerrar sesión
             </p>
           ) : (
-            <Link
-              href={"/login"}
-              className="text-black w-max block"
-              onClick={() => setCollapsed(false)}
-            >
+            <Link href={"/login"} className="text-black w-max block">
               Iniciar sesión
             </Link>
           )}

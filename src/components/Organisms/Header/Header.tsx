@@ -3,15 +3,31 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import UserHeader from "@/components/molecules/UserHeader/UserHeader";
 import CartHeader from "@/components/molecules/CartHeader/CartHeader";
+import { getCartByUser } from "@/services/app.services";
 
 const lilita = Lilita_One({
   subsets: ["latin"],
   weight: "400",
 });
 
-const Header = () => {
+const getCartData = async (id) => {
+  const response = await getCartByUser(id);
+  const {
+    data: { products },
+  } = response;
+  return products;
+};
+
+const Header = async () => {
   const cookiesStore = cookies();
-  const auth = cookiesStore.get("access_token");
+  const auth = cookiesStore.get("user_data");
+  let userData = "";
+  let cart = [];
+  if (auth?.value) {
+    const jsonString = atob(auth?.value);
+    userData = JSON.parse(jsonString);
+    cart = await getCartData(userData?.["id"]);
+  }
 
   return (
     <header className="bg-[--secondary]">
@@ -20,8 +36,8 @@ const Header = () => {
           Spagnolo <span className="text-[--quinary]">Shop</span>
         </Link>
         <nav className="flex items-center gap-8">
-          <UserHeader logged={auth?.value?.length > 0} />
-          <CartHeader />
+          <UserHeader logged={userData} />
+          <CartHeader user={userData} cartList={cart} />
         </nav>
       </div>
     </header>

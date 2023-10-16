@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import pass from "../../../../public/icons/pass_icon.svg";
 import passShow from "../../../../public/icons/pass_icon_show.svg";
-import { setCookieToken } from "@/utils/cookiesHelper";
+import { setCookie } from "@/utils/cookiesHelper";
 import { useRouter } from "next/navigation";
 
 const LoginForm = ({ user }) => {
@@ -31,7 +31,7 @@ const LoginForm = ({ user }) => {
     const response = await login({ username, password });
     const { data } = response;
     if (data) {
-      setCookieToken(data);
+      setCookie({ name: "user_data", data: user });
       router.push("/");
       router.refresh();
     }
