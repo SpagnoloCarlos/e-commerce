@@ -4,11 +4,17 @@ import icon from "../../../../public/icons/header_cart.svg";
 import CartListHeader from "../CartListHeader/CartListHeader";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/store/cart.store";
 
-const CartHeader = ({ user, cartList }) => {
+const CartHeader = ({ user }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { getCart } = useCart();
+
+  useEffect(() => {
+    getCart(user?.id);
+  }, []);
 
   useEffect(() => {
     setOpen(collapsed);
@@ -40,9 +46,7 @@ const CartHeader = ({ user, cartList }) => {
         onClick={() => setCollapsed(!collapsed)}
         className=" cursor-pointer"
       />
-      {collapsed && (
-        <CartListHeader cartList={cartList} open={open} setOpen={handleClose} />
-      )}
+      {collapsed && <CartListHeader open={open} setOpen={handleClose} />}
     </div>
   );
 };

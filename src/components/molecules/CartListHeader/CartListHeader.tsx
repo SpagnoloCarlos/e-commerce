@@ -1,37 +1,16 @@
-import { getProductById } from "@/services/app.services";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import CartHeaderItem from "../CartHeaderItem/CartHeaderItem";
+import { useCart } from "@/store/cart.store";
 
-const CartListHeader = ({ open, setOpen, cartList }) => {
-  const [products, setProducts] = useState([]);
+const CartListHeader = ({ open, setOpen }) => {
   const [subTotal, setSubtotal] = useState(0);
+  const { cart } = useCart();
 
   useEffect(() => {
-    const getProductData = async (id) => {
-      const response = await getProductById(id);
-      const { data } = response;
-      return data;
-    };
-    if (cartList?.length > 0) {
-      const promises = cartList.map(({ productId }) =>
-        getProductData(productId)
-      );
-
-      Promise.all(promises)
-        .then((productDataArray) => {
-          setProducts(productDataArray);
-        })
-        .catch((error) => {
-          console.error("Error al obtener los datos de los productos:", error);
-        });
-    }
-  }, []);
-
-  useEffect(() => {
-    const subtotal = products.reduce((acc, item) => acc + item.price, 0);
+    const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
     setSubtotal(subtotal);
-  }, [products]);
+  }, [cart]);
 
   return (
     <div
@@ -53,16 +32,16 @@ const CartListHeader = ({ open, setOpen, cartList }) => {
             x
           </span>
         </header>
-        {products?.length > 0 && (
+        {cart?.length > 0 && (
           <ul className="my-4">
-            {products.map(({ id, title, image, price }, index) => (
+            {cart.map(({ id, title, image, price, quantity }) => (
               <CartHeaderItem
                 key={`cart_product_${id}`}
                 id={id}
                 title={title}
                 price={price}
                 image={image}
-                quantity={cartList?.[index]?.quantity}
+                quantity={quantity}
               />
             ))}
           </ul>

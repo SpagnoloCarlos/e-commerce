@@ -12,7 +12,7 @@ export const Rating = ({ rating }) => {
 
       <label
         className={`${rating >= 2 ? "text-orange-400" : "text-gray-500"}
-         text-3xl cursor-pointer`}
+         text-3xl `}
         htmlFor="radio2"
         id="2"
       >
@@ -21,7 +21,7 @@ export const Rating = ({ rating }) => {
 
       <label
         className={`${rating >= 3 ? "text-orange-400" : "text-gray-500"}
-        text-3xl cursor-pointer`}
+        text-3xl `}
         htmlFor="radio3"
         id="3"
       >
@@ -30,7 +30,7 @@ export const Rating = ({ rating }) => {
 
       <label
         className={`${rating >= 4 ? "text-orange-400" : "text-gray-500"}
-        text-3xl cursor-pointer`}
+        text-3xl `}
         htmlFor="radio4"
         id="4"
       >
@@ -39,7 +39,7 @@ export const Rating = ({ rating }) => {
 
       <label
         className={`${rating >= 5 ? "text-orange-400" : "text-gray-500"}
-         text-3xl cursor-pointer`}
+         text-3xl `}
         htmlFor="radio5"
         id="5"
       >
