@@ -3,6 +3,7 @@
 <!-- ![E-commerce](ruta-a-tu-imagen-o-logo.png) -->
 
 Este proyecto ha sido desarrollado con el propósito de practicar y mejorar tus habilidades en el rubro del e-commerce. Está diseñado para funcionar como un template que puedes utilizar como punto de partida para otros proyectos similares.
+(Aún está en desarrollo, por lo que puede recibir cambios importante)
 
 ## Tecnologías Utilizadas
 
@@ -46,7 +47,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 Si tienes alguna pregunta, sugerencia o simplemente deseas ponerse en contacto con el equipo detrás de este proyecto, puedes hacerlo a través de las siguientes vías:
 
-- Correo electrónico: tu@email.com
+- Correo electrónico: carlos.andres.spagnolo@gmail.com
 - Redes sociales: [LinkedIn](https://www.linkedin.com/in/carlos-spagnolo-andres/)
 
 ¡Esperamos que este proyecto te sea útil en tu desarrollo en el mundo del e-commerce!
