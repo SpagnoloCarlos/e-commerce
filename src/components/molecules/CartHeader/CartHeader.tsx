@@ -13,8 +13,10 @@ const CartHeader = ({ user }) => {
   const { getCart } = useCart();
 
   useEffect(() => {
-    getCart(user?.id);
-  }, []);
+    if (user) {
+      getCart(user?.id);
+    }
+  }, [user]);
 
   useEffect(() => {
     setOpen(collapsed);

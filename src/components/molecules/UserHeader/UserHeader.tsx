@@ -6,14 +6,18 @@ import icon from "../../../../public/icons/header_user.svg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { setCookie } from "@/utils/cookiesHelper";
+import { useCart } from "@/store/cart.store";
 
 const UserHeader = ({ logged }) => {
   const [collapsed, setCollapsed] = useState(false);
   const router = useRouter();
+  const { resetCart } = useCart();
 
   const logout = () => {
-    router.refresh();
     setCookie({ name: "user_data", data: "", remove: true });
+    resetCart();
+    router.refresh();
+    router.push("/");
   };
 
   const handleOnEnter = () => {

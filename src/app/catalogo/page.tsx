@@ -1,6 +1,7 @@
 import CatalogoList from "@/components/Organisms/Catalogo/Catalogo";
 import CatalogoSidebar from "@/components/molecules/CatalogoSidebar/CatalogoSidebar";
 import { getCategories, getProducts } from "@/services/app.services";
+import { Metadata } from "next";
 
 const getAllProducts = async () => {
   const response = await getProducts();
@@ -18,6 +19,10 @@ const getCategoriesData = async () => {
     return firstLetter + rest;
   });
   return title;
+};
+
+export const metadata: Metadata = {
+  title: "Catálogo | Spagnolo Shop",
 };
 
 export default async function Catalogo({ searchParams }) {

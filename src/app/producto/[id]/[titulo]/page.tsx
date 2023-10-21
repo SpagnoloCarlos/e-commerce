@@ -3,8 +3,29 @@ import Breadcrumbs from "@/components/atoms/Breadcrumbs/Breadcrumbs";
 import Rating from "@/components/atoms/Rating/Rating";
 import { getProductById } from "@/services/app.services";
 import { friendlyUrl } from "@/utils/urlHelper";
+import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+type Props = {
+  params: { titulo: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const titulo = params.titulo;
+  const firstLetter = titulo?.toString().split("-")[0].charAt(0).toUpperCase();
+  const firstWord = titulo?.toString().split("-")[0].slice(1);
+  const restTitle = titulo?.toString().split("-").slice(1).join(" ");
+  const title = firstLetter + firstWord + " " + restTitle + " | Spagnolo Shop";
+
+  return {
+    title,
+  };
+}
 
 const getProductData = async (id) => {
   const response = await getProductById(id);

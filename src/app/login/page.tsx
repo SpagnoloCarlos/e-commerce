@@ -1,10 +1,15 @@
 import LoginForm from "@/components/molecules/LoginForm/LoginForm";
 import { getUser } from "@/services/app.services";
+import { Metadata } from "next";
 
 const getUserData = async () => {
   const response = await getUser(3);
   const { data } = response;
   return data;
+};
+
+export const metadata: Metadata = {
+  title: "Login | Spagnolo Shop",
 };
 
 export default async function Login() {

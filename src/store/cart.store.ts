@@ -11,13 +11,21 @@ interface IProduct {
   quantity?: number;
 }
 
+interface IDetails {
+  products: Array<IProduct>;
+  subtotal: number;
+  descuento: 0;
+  total: number;
+}
+
 interface ICart {
-  cart: Array<IProduct>;
+  cart: IDetails;
   getCart: (id: number) => void;
+  resetCart: () => void;
 }
 
 export const useCart = create<ICart>()((set) => ({
-  cart: [],
+  cart: { products: [], descuento: 0, subtotal: 0, total: 0 },
 
   getCart: async (id) => {
     const response = await getCartByUser(id);
@@ -41,13 +49,33 @@ export const useCart = create<ICart>()((set) => ({
           const cart = productDataArray?.map((item, index) => {
             return { ...item, quantity: products?.[index]?.quantity };
           });
+          const total = cart.reduce(
+            (acc, curr) => acc + curr.price * curr.quantity,
+            0
+          );
           set(() => ({
-            cart,
+            cart: {
+              products: cart,
+              descuento: 0,
+              subtotal: total,
+              total,
+            },
           }));
         })
         .catch((error) => {
           console.error("Error al obtener los datos de los productos:", error);
         });
     }
+  },
+
+  resetCart: () => {
+    set(() => ({
+      cart: {
+        products: [],
+        descuento: 0,
+        subtotal: 0,
+        total: 0,
+      },
+    }));
   },
 }));

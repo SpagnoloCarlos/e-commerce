@@ -1,16 +1,9 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import CartHeaderItem from "../CartHeaderItem/CartHeaderItem";
 import { useCart } from "@/store/cart.store";
 
 const CartListHeader = ({ open, setOpen }) => {
-  const [subTotal, setSubtotal] = useState(0);
   const { cart } = useCart();
-
-  useEffect(() => {
-    const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-    setSubtotal(subtotal);
-  }, [cart]);
 
   return (
     <div
@@ -19,7 +12,7 @@ const CartListHeader = ({ open, setOpen }) => {
       }`}
     >
       <div
-        className={`absolute flex flex-col p-8 bg-white right-0 w-full md:max-w-md h-full transition-all duration-300 translate-x-[${
+        className={`absolute flex flex-col justify-between p-8 bg-white right-0 w-full md:max-w-md h-full transition-all duration-300 translate-x-[${
           open ? "0px" : "448px"
         }]`}
       >
@@ -32,9 +25,9 @@ const CartListHeader = ({ open, setOpen }) => {
             x
           </span>
         </header>
-        {cart?.length > 0 && (
+        {cart?.products?.length > 0 ? (
           <ul className="my-4">
-            {cart.map(({ id, title, image, price, quantity }) => (
+            {cart?.products?.map(({ id, title, image, price, quantity }) => (
               <CartHeaderItem
                 key={`cart_product_${id}`}
                 id={id}
@@ -45,11 +38,25 @@ const CartListHeader = ({ open, setOpen }) => {
               />
             ))}
           </ul>
+        ) : (
+          <li className="text-center flex flex-col items-center gap-1 my-9">
+            <h2 className="text-black text-lg font-semibold">
+              Aún no tienes productos en tu carrito
+            </h2>
+            <p className="text-gray-700">
+              Puedes explorar nuestro amplio catálogo
+            </p>
+            <Link
+              href={"/catalog"}
+              className="w-max mt-2 p-2 flex-1 rounded-md bg-blue-500 text-center transition-colors duration-200 hover:bg-blue-700"
+            >
+              Descubrir productos
+            </Link>
+          </li>
         )}
-        <div>productos</div>
-        <footer className="mt-auto">
+        <footer className="">
           <p className="text-black text-2xl font-semibold mb-4 flex items-center justify-between">
-            Subtotal: <span>${subTotal}</span>
+            Subtotal: <span>${cart.subtotal}</span>
           </p>
           <div className="flex items-center gap-4 justify-between text-white font-semibold ">
             <Link

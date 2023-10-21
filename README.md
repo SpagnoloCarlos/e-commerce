@@ -16,6 +16,10 @@ El proyecto E-commerce ha sido desarrollado utilizando las siguientes tecnologí
 - [Axios](https://axios-http.com/): Un cliente HTTP basado en promesas para realizar solicitudes HTTP.
 - [Zustand](https://github.com/pmndrs/zustand): Una librería para el manejo de estados globales, similar a Redux, pero con una API más sencilla y una mejor experiencia de desarrollo.
 
+## API Utilizada
+
+- [Fake Store API]("https://fakestoreapi.com/"): es una API REST en línea gratuita que puedes utilizar siempre que necesites datos pseudorreales para tu sitio web de comercio electrónico o compras sin ejecutar ningún código del lado del servidor.
+
 ## Instrucciones de Uso
 
 1. Clona este repositorio en tu máquina local:
